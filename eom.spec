@@ -5,13 +5,13 @@
 Summary:	The Eye of MATE image viewer
 Summary(pl.UTF-8):	Oko MATE - przeglądarka obrazków
 Summary(pt_BR.UTF-8):	Visualizador de imagem Eye of MATE
-Name:		mate-image-viewer
-Version:	1.6.2
+Name:		eom
+Version:	1.8.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Graphics
-Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
-# Source0-md5:	de728693721f1b35166f7687bba1f70d
+Source0:	http://pub.mate-desktop.org/releases/1.8/%{name}-%{version}.tar.xz
+# Source0-md5:	0e80c19eb58d337ff25a7492967d0e4a
 Patch0:		%{name}-codegen.patch
 URL:		http://mate-desktop.org/
 BuildRequires:	autoconf >= 2.59
@@ -33,7 +33,6 @@ BuildRequires:	libtool >= 1:1.4.3
 BuildRequires:	libxml2-devel >= 2.0
 BuildRequires:	mate-common
 BuildRequires:	mate-desktop-devel >= 1.5.0
-BuildRequires:	mate-doc-utils
 BuildRequires:	mate-icon-theme-devel >= 1.1.0
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	python-devel >= 2.3
@@ -46,6 +45,7 @@ BuildRequires:	shared-mime-info >= 0.20
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xz
+BuildRequires:	yelp-tools
 BuildRequires:	zlib-devel
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	glib2 >= 1:2.26.0
@@ -60,6 +60,7 @@ Requires:	libexif >= 1:0.6.14
 Requires:	librsvg >= 2.26.0
 Requires:	mate-icon-theme >= 1.1.0
 Requires:	shared-mime-info >= 0.20
+Obsoletes:	mate-image-viewer
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -80,6 +81,7 @@ Group:		X11/Development/Libraries
 # doesn't require base
 Requires:	glib2-devel >= 1:2.26.0
 Requires:	gtk+2-devel >= 2:2.18.0
+Obsoletes:	mate-image-viewer-devel
 
 %description devel
 Header files for Eye of MATE plugins.
@@ -92,6 +94,7 @@ Summary:	Eye of MATE API documentation
 Summary(pl.UTF-8):	Dokumentacja API Eye of MATE
 Group:		Documentation
 Requires:	gtk-doc-common
+Obsoletes:	mate-image-viewer-apidocs
 
 %description apidocs
 Eye of MATE API documentation.
@@ -104,7 +107,6 @@ Dokumentacja API Eye of MATE.
 %patch0 -p1
 
 %build
-mate-doc-prepare --copy --force
 %{?with_apidocs:%{__gtkdocize}}
 %{__intltoolize}
 %{__libtoolize}
@@ -126,6 +128,8 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/eom/plugins/*.la
+
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/cmn
 
 # mate < 1.5 did not exist in PLD, avoid dependency on mate-conf
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/MateConf/gsettings/eom.convert
@@ -160,7 +164,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/eom/plugins/libstatusbar-date.so
 %{_libdir}/eom/plugins/statusbar-date.eom-plugin
 %{_datadir}/glib-2.0/schemas/org.mate.eom.gschema.xml
-%{_datadir}/mate-image-viewer
+%{_datadir}/eom
 %{_desktopdir}/eom.desktop
 %{_iconsdir}/hicolor/*/apps/eom.*
 %{_mandir}/man1/eom.1*
