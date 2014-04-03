@@ -1,13 +1,13 @@
 #
 # Conditional build:
 %bcond_without	apidocs		# disable API documentation
-#
+
 Summary:	The Eye of MATE image viewer
 Summary(pl.UTF-8):	Oko MATE - przeglądarka obrazków
 Summary(pt_BR.UTF-8):	Visualizador de imagem Eye of MATE
 Name:		eom
 Version:	1.8.0
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications/Graphics
 Source0:	http://pub.mate-desktop.org/releases/1.8/%{name}-%{version}.tar.xz
@@ -95,6 +95,9 @@ Summary(pl.UTF-8):	Dokumentacja API Eye of MATE
 Group:		Documentation
 Requires:	gtk-doc-common
 Obsoletes:	mate-image-viewer-apidocs
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 Eye of MATE API documentation.
