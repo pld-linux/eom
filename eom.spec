@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_without	apidocs		# disable API documentation
+%bcond_with	gtk3		# use GTK+ 3.x instead of 2.x
 
 Summary:	The Eye of MATE image viewer
 Summary(pl.UTF-8):	Oko MATE - przeglądarka obrazków
@@ -22,10 +23,11 @@ BuildRequires:	exempi-devel >= 1.99.5
 BuildRequires:	gdk-pixbuf2-devel >= 2.4.0
 BuildRequires:	gettext-devel >= 0.10.40
 BuildRequires:	glib2-devel >= 1:2.26.0
-BuildRequires:	gtk+2-devel >= 2:2.18.0
+%{!?with_gtk3:BuildRequires:	gtk+2-devel >= 2:2.18.0}
+%{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.9}
 BuildRequires:	intltool >= 0.40.0
-BuildRequires:	lcms-devel
+BuildRequires:	lcms2-devel >= 2
 BuildRequires:	libexif-devel >= 1:0.6.14
 BuildRequires:	libjpeg-devel
 BuildRequires:	librsvg-devel >= 2.26.0
@@ -35,12 +37,11 @@ BuildRequires:	mate-common
 BuildRequires:	mate-desktop-devel >= 1.5.0
 BuildRequires:	mate-icon-theme-devel >= 1.1.0
 BuildRequires:	pkgconfig >= 1:0.9.0
-BuildRequires:	python-devel >= 2.3
+BuildRequires:	python-devel >= 1:2.3
 BuildRequires:	python-pygobject-devel >= 2.16.0
 BuildRequires:	python-pygtk-devel >= 2:2.14.0
 BuildRequires:	rpmbuild(find_lang) >= 1.36
 BuildRequires:	rpmbuild(macros) >= 1.311
-BuildRequires:	scrollkeeper
 BuildRequires:	shared-mime-info >= 0.20
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xorg-lib-libX11-devel
@@ -51,11 +52,11 @@ Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	glib2 >= 1:2.26.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
-Requires(post,postun):	scrollkeeper
 Requires:	dbus-glib >= 0.71
 Requires:	exempi >= 1.99.5
 Requires:	glib2 >= 1:2.26.0
-Requires:	gtk+2 >= 2:2.18.0
+%{!?with_gtk3:Requires:	gtk+2 >= 2:2.18.0}
+%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 Requires:	libexif >= 1:0.6.14
 Requires:	librsvg >= 2.26.0
 Requires:	mate-icon-theme >= 1.1.0
@@ -119,8 +120,8 @@ Dokumentacja API Eye of MATE.
 %{__autoconf}
 %configure \
 	--enable-gtk-doc%{!?with_apidocs:=no} \
-	--disable-scrollkeeper \
 	--disable-silent-rules \
+	%{?with_gtk:--with-gtk=3.0} \
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
 
@@ -132,25 +133,21 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/eom/plugins/*.la
 
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/cmn
-
 # mate < 1.5 did not exist in PLD, avoid dependency on mate-conf
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/MateConf/gsettings/eom.convert
 
-%find_lang eom --with-mate --with-omf
+%find_lang eom --with-mate
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
 %glib_compile_schemas
-%scrollkeeper_update_post
 %update_desktop_database_post
 %update_icon_cache hicolor
 
 %postun
 %glib_compile_schemas
-%scrollkeeper_update_postun
 %update_desktop_database_postun
 %update_icon_cache hicolor
 
