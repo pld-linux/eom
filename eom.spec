@@ -7,12 +7,12 @@ Summary:	The Eye of MATE image viewer
 Summary(pl.UTF-8):	Oko MATE - przeglądarka obrazków
 Summary(pt_BR.UTF-8):	Visualizador de imagem Eye of MATE
 Name:		eom
-Version:	1.8.1
-Release:	2
+Version:	1.10.0
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Graphics
-Source0:	http://pub.mate-desktop.org/releases/1.8/%{name}-%{version}.tar.xz
-# Source0-md5:	87dd1966dd9deeaaf95438a618353806
+Source0:	http://pub.mate-desktop.org/releases/1.10/%{name}-%{version}.tar.xz
+# Source0-md5:	06da21f7f1b9b7c40561f127a549fa1e
 Patch0:		%{name}-codegen.patch
 URL:		http://mate-desktop.org/
 BuildRequires:	autoconf >= 2.59
@@ -23,6 +23,7 @@ BuildRequires:	exempi-devel >= 1.99.5
 BuildRequires:	gdk-pixbuf2-devel >= 2.4.0
 BuildRequires:	gettext-tools >= 0.10.40
 BuildRequires:	glib2-devel >= 1:2.26.0
+BuildRequires:	gobject-introspection-devel >= 0.9.3
 %{!?with_gtk3:BuildRequires:	gtk+2-devel >= 2:2.18.0}
 %{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.9}
@@ -30,11 +31,11 @@ BuildRequires:	intltool >= 0.40.0
 BuildRequires:	lcms2-devel >= 2
 BuildRequires:	libexif-devel >= 1:0.6.14
 BuildRequires:	libjpeg-devel
-BuildRequires:	librsvg-devel >= 2.26.0
+BuildRequires:	librsvg-devel >= 2.36.2
 BuildRequires:	libtool >= 1:1.4.3
 BuildRequires:	libxml2-devel >= 2.0
 BuildRequires:	mate-common
-BuildRequires:	mate-desktop-devel >= 1.5.0
+BuildRequires:	mate-desktop-devel >= 1.9.1
 BuildRequires:	mate-icon-theme-devel >= 1.1.0
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	python-devel >= 1:2.3
@@ -58,7 +59,8 @@ Requires:	glib2 >= 1:2.26.0
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.18.0}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 Requires:	libexif >= 1:0.6.14
-Requires:	librsvg >= 2.26.0
+Requires:	librsvg >= 2.36.2
+Requires:	mate-desktop-libs >= 1.9.1
 Requires:	mate-icon-theme >= 1.1.0
 Requires:	shared-mime-info >= 0.20
 Obsoletes:	mate-image-viewer
@@ -81,7 +83,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe dla wtyczek Eye of MATE
 Group:		X11/Development/Libraries
 # doesn't require base
 Requires:	glib2-devel >= 1:2.26.0
-Requires:	gtk+2-devel >= 2:2.18.0
+%{!?with_gtk3:Requires:	gtk+2-devel >= 2:2.18.0}
+%{?with_gtk3:Requires:	gtk+3-devel >= 3.0.0}
 Obsoletes:	mate-image-viewer-devel
 
 %description devel
@@ -155,6 +158,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README THANKS TODO
 %attr(755,root,root) %{_bindir}/eom
+%{_libdir}/girepository-1.0/Eom-1.0.typelib
 %dir %{_libdir}/eom
 %dir %{_libdir}/eom/plugins
 %attr(755,root,root) %{_libdir}/eom/plugins/libfullscreen.so
@@ -163,6 +167,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/eom/plugins/reload.eom-plugin
 %attr(755,root,root) %{_libdir}/eom/plugins/libstatusbar-date.so
 %{_libdir}/eom/plugins/statusbar-date.eom-plugin
+%{_datadir}/appdata/eom.appdata.xml
+%{_datadir}/glib-2.0/schemas/org.mate.eom.enums.xml
 %{_datadir}/glib-2.0/schemas/org.mate.eom.gschema.xml
 %{_datadir}/eom
 %{_desktopdir}/eom.desktop
@@ -172,6 +178,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/eom-2.20
+%{_datadir}/gir-1.0/Eom-1.0.gir
 %{_pkgconfigdir}/eom.pc
 
 %if %{with apidocs}
