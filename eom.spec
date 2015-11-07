@@ -22,7 +22,7 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	exempi-devel >= 1.99.5
 BuildRequires:	gdk-pixbuf2-devel >= 2.4.0
 BuildRequires:	gettext-tools >= 0.10.40
-BuildRequires:	glib2-devel >= 1:2.26.0
+BuildRequires:	glib2-devel >= 1:2.36.0
 BuildRequires:	gobject-introspection-devel >= 0.9.3
 %{!?with_gtk3:BuildRequires:	gtk+2-devel >= 2:2.18.0}
 %{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
@@ -49,12 +49,12 @@ BuildRequires:	xz
 BuildRequires:	yelp-tools
 BuildRequires:	zlib-devel
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	glib2 >= 1:2.26.0
+Requires(post,postun):	glib2 >= 1:2.36.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
 Requires:	dbus-glib >= 0.71
 Requires:	exempi >= 1.99.5
-Requires:	glib2 >= 1:2.26.0
+Requires:	glib2 >= 1:2.36.0
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.18.0}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 Requires:	libexif >= 1:0.6.14
@@ -80,7 +80,7 @@ Summary:	Header files for Eye of MATE plugins
 Summary(pl.UTF-8):	Pliki nagłówkowe dla wtyczek Eye of MATE
 Group:		X11/Development/Libraries
 # doesn't require base
-Requires:	glib2-devel >= 1:2.26.0
+Requires:	glib2-devel >= 1:2.36.0
 %{!?with_gtk3:Requires:	gtk+2-devel >= 2:2.18.0}
 %{?with_gtk3:Requires:	gtk+3-devel >= 3.0.0}
 Obsoletes:	mate-image-viewer-devel
