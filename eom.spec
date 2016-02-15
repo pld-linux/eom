@@ -7,12 +7,12 @@ Summary:	The Eye of MATE image viewer
 Summary(pl.UTF-8):	Oko MATE - przeglądarka obrazków
 Summary(pt_BR.UTF-8):	Visualizador de imagem Eye of MATE
 Name:		eom
-Version:	1.12.1
+Version:	1.12.2
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Graphics
 Source0:	http://pub.mate-desktop.org/releases/1.12/%{name}-%{version}.tar.xz
-# Source0-md5:	b43c8ce9a7b4fc2f744fef91d2eb39ec
+# Source0-md5:	bc8105d1f58477d02ab6732214c5ecf7
 Patch0:		%{name}-codegen.patch
 URL:		http://mate-desktop.org/
 BuildRequires:	autoconf >= 2.59
