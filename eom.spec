@@ -54,6 +54,7 @@ Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
 Requires:	dbus-glib >= 0.71
 Requires:	exempi >= 1.99.5
+Requires:	gdk-pixbuf2 >= 2.30.0
 Requires:	glib2 >= 1:2.36.0
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.18.0}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
