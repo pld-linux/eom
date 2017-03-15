@@ -1,19 +1,17 @@
 #
 # Conditional build:
 %bcond_without	apidocs		# disable API documentation
-%bcond_with	gtk3		# use GTK+ 3.x instead of 2.x
 
 Summary:	The Eye of MATE image viewer
 Summary(pl.UTF-8):	Oko MATE - przeglądarka obrazków
 Summary(pt_BR.UTF-8):	Visualizador de imagem Eye of MATE
 Name:		eom
-Version:	1.16.1
+Version:	1.18.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Graphics
-Source0:	http://pub.mate-desktop.org/releases/1.16/%{name}-%{version}.tar.xz
-# Source0-md5:	d5fd10ad1b70c914b20502859c7e521c
-Patch0:		%{name}-codegen.patch
+Source0:	http://pub.mate-desktop.org/releases/1.18/%{name}-%{version}.tar.xz
+# Source0-md5:	bb3ff5d5551d32c447275f78ffa7c3fe
 URL:		http://mate-desktop.org/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
@@ -24,18 +22,19 @@ BuildRequires:	gdk-pixbuf2-devel >= 2.30.0
 BuildRequires:	gettext-tools >= 0.10.40
 BuildRequires:	glib2-devel >= 1:2.36.0
 BuildRequires:	gobject-introspection-devel >= 0.9.3
-%{!?with_gtk3:BuildRequires:	gtk+2-devel >= 2:2.18.0}
-%{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
+BuildRequires:	gtk+3-devel >= 3.14
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.9}
 BuildRequires:	intltool >= 0.50.1
 BuildRequires:	lcms2-devel >= 2
 BuildRequires:	libexif-devel >= 1:0.6.14
 BuildRequires:	libjpeg-devel
+BuildRequires:	libpeas-devel >= 1.2.0
+BuildRequires:	libpeas-gtk-devel >= 1.2.0
 BuildRequires:	librsvg-devel >= 2.36.2
 BuildRequires:	libtool >= 1:1.4.3
 BuildRequires:	libxml2-devel >= 2.0
 BuildRequires:	mate-common
-BuildRequires:	mate-desktop-devel >= 1.9.1
+BuildRequires:	mate-desktop-devel >= 1.17.0
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	python-devel >= 1:2.3
 BuildRequires:	python-pygobject-devel >= 2.16.0
@@ -56,11 +55,12 @@ Requires:	dbus-glib >= 0.71
 Requires:	exempi >= 1.99.5
 Requires:	gdk-pixbuf2 >= 2.30.0
 Requires:	glib2 >= 1:2.36.0
-%{!?with_gtk3:Requires:	gtk+2 >= 2:2.18.0}
-%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
+Requires:	gtk+3 >= 3.14
 Requires:	libexif >= 1:0.6.14
+Requires:	libpeas >= 1.2.0
+Requires:	libpeas-gtk >= 1.2.0
 Requires:	librsvg >= 2.36.2
-Requires:	mate-desktop-libs >= 1.9.1
+Requires:	mate-desktop-libs >= 1.17.0
 Requires:	shared-mime-info >= 0.20
 Obsoletes:	mate-image-viewer
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -82,8 +82,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe dla wtyczek Eye of MATE
 Group:		X11/Development/Libraries
 # doesn't require base
 Requires:	glib2-devel >= 1:2.36.0
-%{!?with_gtk3:Requires:	gtk+2-devel >= 2:2.18.0}
-%{?with_gtk3:Requires:	gtk+3-devel >= 3.0.0}
+Requires:	gtk+3-devel >= 3.14
 Obsoletes:	mate-image-viewer-devel
 
 %description devel
@@ -110,7 +109,6 @@ Dokumentacja API Eye of MATE.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{?with_apidocs:%{__gtkdocize}}
@@ -123,7 +121,6 @@ Dokumentacja API Eye of MATE.
 %configure \
 	--enable-gtk-doc%{!?with_apidocs:=no} \
 	--disable-silent-rules \
-	%{?with_gtk:--with-gtk=3.0} \
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
 
@@ -136,7 +133,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/eom/plugins/*.la
 
 # not supported by glibc yet
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,jv,pms}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,ku_IQ,jv,pms}
 
 %find_lang eom --with-mate
 
@@ -161,11 +158,11 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/eom
 %dir %{_libdir}/eom/plugins
 %attr(755,root,root) %{_libdir}/eom/plugins/libfullscreen.so
-%{_libdir}/eom/plugins/fullscreen.eom-plugin
+%{_libdir}/eom/plugins/fullscreen.plugin
 %attr(755,root,root) %{_libdir}/eom/plugins/libreload.so
-%{_libdir}/eom/plugins/reload.eom-plugin
+%{_libdir}/eom/plugins/reload.plugin
 %attr(755,root,root) %{_libdir}/eom/plugins/libstatusbar-date.so
-%{_libdir}/eom/plugins/statusbar-date.eom-plugin
+%{_libdir}/eom/plugins/statusbar-date.plugin
 %{_datadir}/appdata/eom.appdata.xml
 %{_datadir}/glib-2.0/schemas/org.mate.eom.enums.xml
 %{_datadir}/glib-2.0/schemas/org.mate.eom.gschema.xml
