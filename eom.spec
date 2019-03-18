@@ -6,16 +6,15 @@ Summary:	The Eye of MATE image viewer
 Summary(pl.UTF-8):	Oko MATE - przeglądarka obrazków
 Summary(pt_BR.UTF-8):	Visualizador de imagem Eye of MATE
 Name:		eom
-Version:	1.20.2
+Version:	1.22.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Graphics
-Source0:	http://pub.mate-desktop.org/releases/1.20/%{name}-%{version}.tar.xz
-# Source0-md5:	7b890bd8f753e1728bc50701e417d4d1
+Source0:	http://pub.mate-desktop.org/releases/1.22/%{name}-%{version}.tar.xz
+# Source0-md5:	d7d019a94067cef95769cf7557316670
 URL:		http://mate-desktop.org/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	dbus-glib-devel >= 0.71
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	exempi-devel >= 1.99.5
 BuildRequires:	gdk-pixbuf2-devel >= 2.30.0
@@ -28,17 +27,14 @@ BuildRequires:	intltool >= 0.50.1
 BuildRequires:	lcms2-devel >= 2
 BuildRequires:	libexif-devel >= 1:0.6.14
 BuildRequires:	libjpeg-devel
-BuildRequires:	libpeas-devel >= 1.2.0
-BuildRequires:	libpeas-gtk-devel >= 1.2.0
+BuildRequires:	libpeas-devel >= 1.8.0
+BuildRequires:	libpeas-gtk-devel >= 1.8.0
 BuildRequires:	librsvg-devel >= 2.36.2
 BuildRequires:	libtool >= 1:1.4.3
 BuildRequires:	libxml2-devel >= 2.0
 BuildRequires:	mate-common
 BuildRequires:	mate-desktop-devel >= 1.17.0
 BuildRequires:	pkgconfig >= 1:0.9.0
-BuildRequires:	python-devel >= 1:2.3
-BuildRequires:	python-pygobject-devel >= 2.16.0
-BuildRequires:	python-pygtk-devel >= 2:2.14.0
 BuildRequires:	rpmbuild(find_lang) >= 1.36
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	shared-mime-info >= 0.20
@@ -51,14 +47,13 @@ Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	glib2 >= 1:2.50.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
-Requires:	dbus-glib >= 0.71
 Requires:	exempi >= 1.99.5
 Requires:	gdk-pixbuf2 >= 2.30.0
 Requires:	glib2 >= 1:2.50.0
 Requires:	gtk+3 >= 3.22
 Requires:	libexif >= 1:0.6.14
-Requires:	libpeas >= 1.2.0
-Requires:	libpeas-gtk >= 1.2.0
+Requires:	libpeas >= 1.8.0
+Requires:	libpeas-gtk >= 1.8.0
 Requires:	librsvg >= 2.36.2
 Requires:	mate-desktop-libs >= 1.17.0
 Requires:	shared-mime-info >= 0.20
@@ -163,7 +158,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/eom/plugins/reload.plugin
 %attr(755,root,root) %{_libdir}/eom/plugins/libstatusbar-date.so
 %{_libdir}/eom/plugins/statusbar-date.plugin
-%{_datadir}/appdata/eom.appdata.xml
+%{_datadir}/metainfo/eom.appdata.xml
 %{_datadir}/glib-2.0/schemas/org.mate.eom.enums.xml
 %{_datadir}/glib-2.0/schemas/org.mate.eom.gschema.xml
 %{_datadir}/eom
