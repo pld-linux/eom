@@ -6,12 +6,12 @@ Summary:	The Eye of MATE image viewer
 Summary(pl.UTF-8):	Oko MATE - przeglądarka obrazków
 Summary(pt_BR.UTF-8):	Visualizador de imagem Eye of MATE
 Name:		eom
-Version:	1.22.1
-Release:	2
+Version:	1.22.2
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Graphics
 Source0:	http://pub.mate-desktop.org/releases/1.22/%{name}-%{version}.tar.xz
-# Source0-md5:	780d55f6d8d8ed79361a0fad841e19e9
+# Source0-md5:	4b19cec0080448513861c2c70fca7ff7
 URL:		http://mate-desktop.org/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
@@ -19,7 +19,7 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	exempi-devel >= 1.99.5
 BuildRequires:	gdk-pixbuf2-devel >= 2.30.0
 BuildRequires:	gettext-tools >= 0.10.40
-BuildRequires:	glib2-devel >= 1:2.50.0
+BuildRequires:	glib2-devel >= 1:2.52.0
 BuildRequires:	gobject-introspection-devel >= 0.9.3
 BuildRequires:	gtk+3-devel >= 3.22
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.9}
@@ -44,12 +44,12 @@ BuildRequires:	xz
 BuildRequires:	yelp-tools
 BuildRequires:	zlib-devel
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	glib2 >= 1:2.50.0
+Requires(post,postun):	glib2 >= 1:2.52.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
 Requires:	exempi >= 1.99.5
 Requires:	gdk-pixbuf2 >= 2.30.0
-Requires:	glib2 >= 1:2.50.0
+Requires:	glib2 >= 1:2.52.0
 Requires:	gtk+3 >= 3.22
 Requires:	libexif >= 1:0.6.14
 Requires:	libpeas >= 1.8.0
@@ -76,7 +76,7 @@ Summary:	Header files for Eye of MATE plugins
 Summary(pl.UTF-8):	Pliki nagłówkowe dla wtyczek Eye of MATE
 Group:		X11/Development/Libraries
 # doesn't require base
-Requires:	glib2-devel >= 1:2.50.0
+Requires:	glib2-devel >= 1:2.52.0
 Requires:	gtk+3-devel >= 3.22
 Obsoletes:	mate-image-viewer-devel
 
@@ -128,7 +128,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/eom/plugins/*.la
 
 # not supported by glibc yet
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{es_ES,frp,ku_IQ,jv,nqo,pms,ur_PK}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{es_ES,frp,ie,ku_IQ,jv,nqo,pms,ur_PK}
 
 %find_lang eom --with-mate
 
