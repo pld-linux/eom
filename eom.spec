@@ -91,9 +91,7 @@ Summary(pl.UTF-8):	Dokumentacja API Eye of MATE
 Group:		Documentation
 Requires:	gtk-doc-common
 Obsoletes:	mate-image-viewer-apidocs
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 Eye of MATE API documentation.
