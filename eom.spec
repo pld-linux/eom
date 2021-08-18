@@ -6,12 +6,12 @@ Summary:	The Eye of MATE image viewer
 Summary(pl.UTF-8):	Oko MATE - przeglądarka obrazków
 Summary(pt_BR.UTF-8):	Visualizador de imagem Eye of MATE
 Name:		eom
-Version:	1.24.2
+Version:	1.26.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Graphics
-Source0:	http://pub.mate-desktop.org/releases/1.24/%{name}-%{version}.tar.xz
-# Source0-md5:	f7d8a6748bcf1da437b0e162e59c8174
+Source0:	https://pub.mate-desktop.org/releases/1.26/%{name}-%{version}.tar.xz
+# Source0-md5:	a839acdf2448ed6c81a0e50d495adbd0
 URL:		http://mate-desktop.org/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
@@ -24,7 +24,7 @@ BuildRequires:	gobject-introspection-devel >= 0.9.3
 BuildRequires:	gtk+3-devel >= 3.22
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.9}
 BuildRequires:	lcms2-devel >= 2
-BuildRequires:	libexif-devel >= 1:0.6.14
+BuildRequires:	libexif-devel >= 1:0.6.22
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpeas-devel >= 1.8.0
 BuildRequires:	libpeas-gtk-devel >= 1.8.0
@@ -50,7 +50,7 @@ Requires:	exempi >= 1.99.5
 Requires:	gdk-pixbuf2 >= 2.36.5
 Requires:	glib2 >= 1:2.52.0
 Requires:	gtk+3 >= 3.22
-Requires:	libexif >= 1:0.6.14
+Requires:	libexif >= 1:0.6.22
 Requires:	libpeas >= 1.8.0
 Requires:	libpeas-gtk >= 1.8.0
 Requires:	librsvg >= 2.36.2
