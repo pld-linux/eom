@@ -12,7 +12,7 @@ License:	GPL v2+
 Group:		X11/Applications/Graphics
 Source0:	https://pub.mate-desktop.org/releases/1.26/%{name}-%{version}.tar.xz
 # Source0-md5:	a839acdf2448ed6c81a0e50d495adbd0
-URL:		http://mate-desktop.org/
+URL:		https://wiki.mate-desktop.org/mate-desktop/applications/eom/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	docbook-dtd412-xml
@@ -35,7 +35,7 @@ BuildRequires:	mate-common
 BuildRequires:	mate-desktop-devel >= 1.17.0
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	rpmbuild(find_lang) >= 1.36
-BuildRequires:	rpmbuild(macros) >= 1.311
+BuildRequires:	rpmbuild(macros) >= 1.596
 BuildRequires:	shared-mime-info >= 0.20
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xorg-lib-libX11-devel
