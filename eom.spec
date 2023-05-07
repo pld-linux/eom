@@ -34,6 +34,7 @@ BuildRequires:	libxml2-devel >= 2.0
 BuildRequires:	mate-common
 BuildRequires:	mate-desktop-devel >= 1.17.0
 BuildRequires:	pkgconfig >= 1:0.9.0
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(find_lang) >= 1.36
 BuildRequires:	rpmbuild(macros) >= 1.596
 BuildRequires:	shared-mime-info >= 0.20
