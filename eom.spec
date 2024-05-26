@@ -6,12 +6,12 @@ Summary:	The Eye of MATE image viewer
 Summary(pl.UTF-8):	Oko MATE - przeglądarka obrazków
 Summary(pt_BR.UTF-8):	Visualizador de imagem Eye of MATE
 Name:		eom
-Version:	1.26.1
+Version:	1.28.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Graphics
-Source0:	https://pub.mate-desktop.org/releases/1.26/%{name}-%{version}.tar.xz
-# Source0-md5:	9c1ac9f6b2c258320bd1fa7bc4baded3
+Source0:	https://pub.mate-desktop.org/releases/1.28/%{name}-%{version}.tar.xz
+# Source0-md5:	a06a0d4d97092439b80b14689ea85470
 URL:		https://wiki.mate-desktop.org/mate-desktop/applications/eom/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
@@ -57,7 +57,7 @@ Requires:	libpeas-gtk >= 1.8.0
 Requires:	librsvg >= 2.36.2
 Requires:	mate-desktop-libs >= 1.17.0
 Requires:	shared-mime-info >= 0.20
-Obsoletes:	mate-image-viewer
+Obsoletes:	mate-image-viewer < 1.8
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -78,7 +78,7 @@ Group:		X11/Development/Libraries
 # doesn't require base
 Requires:	glib2-devel >= 1:2.52.0
 Requires:	gtk+3-devel >= 3.22
-Obsoletes:	mate-image-viewer-devel
+Obsoletes:	mate-image-viewer-devel < 1.8
 
 %description devel
 Header files for Eye of MATE plugins.
@@ -91,7 +91,7 @@ Summary:	Eye of MATE API documentation
 Summary(pl.UTF-8):	Dokumentacja API Eye of MATE
 Group:		Documentation
 Requires:	gtk-doc-common
-Obsoletes:	mate-image-viewer-apidocs
+Obsoletes:	mate-image-viewer-apidocs < 1.8
 BuildArch:	noarch
 
 %description apidocs
